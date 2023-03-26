@@ -3,11 +3,13 @@
 # 2. https://www.creditkarma.com/credit-cards/i/vantagescore-30
 # 3. https://www.moneyunder30.com/credit-score-estimator
 # 4. https://www.banks.com/articles/credit/credit-score/credit-score-range/
+# 5. https://www.equifax.com/personal/education/credit/score/credit-score-ranges/
 
 
 import streamlit as st
 import requests
 from streamlit_lottie import st_lottie
+from PIL import Image
 
 
 def get_url(url):
@@ -19,6 +21,7 @@ answer1 = -1
 condition = True
 
 credit_score_icon = get_url("https://assets10.lottiefiles.com/packages/lf20_d4zpfpou.json")
+credit_score_picture = Image.open("images/credit_score_image.png")
 
 st.set_page_config(page_title="Credit Score Estimator", page_icon="", layout="wide")
 
@@ -97,7 +100,7 @@ if(submit):
     credit_score = 0
     # calculating credit score
     # caculating payment history(42%)
-    payment_history = (num_late_payments / age_of_card)
+    payment_history = (num_late_payments / (age_of_card*12))
     credit_score += (357 * (1 - payment_history))
 
     # credit utlization (22%)
@@ -125,7 +128,16 @@ if(submit):
     if (credit_score < 300):
         credit_score = 300
 
-    st.subheader("Your estimated credit is: " + str(credit_score))
+    page_icon = ""
+    if(credit_score < 580):
+        page_icon = ":crying_cat_face:"
+    elif(credit_score >= 800):
+        page_icon = ":smile_cat:"
+    elif(credit_score >= 670):
+        page_icon = ":smiley_cat:"
+
+    st.subheader("Your estimated credit is: " + str(credit_score) + page_icon)
+    st.image(credit_score_picture)
 
 
 
