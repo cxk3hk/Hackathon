@@ -1,11 +1,3 @@
-# resources employed:
-# 1. https://www.myfico.com/fico-credit-score-estimator/estimator
-# 2. https://www.creditkarma.com/credit-cards/i/vantagescore-30
-# 3. https://www.moneyunder30.com/credit-score-estimator
-# 4. https://www.banks.com/articles/credit/credit-score/credit-score-range/
-# 5. https://www.equifax.com/personal/education/credit/score/credit-score-ranges/
-
-
 import streamlit as st
 import requests
 from streamlit_lottie import st_lottie
